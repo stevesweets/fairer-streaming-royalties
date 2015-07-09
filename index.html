@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Reform Streaming Royalties</title>
+	<link type="text/css" rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="assets/css/main.css">
+	<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-10 col-sm-offset-1">
+			<h1>Where does my streaming premium go?</h1>
+			<h2>What is this all about then?</h2>
+
+			<div class="row">
+				<div class="col-sm-7">
+					<p>I want to be clear. This is NOT a dig at spotify.  I'm illustrating using their figures (or at least, an approximation of their figures), but this is about understanding how streaming royalties work (and why they are wrong).  We focus too much on per-stream fees, and here's why.</p>
+
+					<p>This whole thing is predicated on the notion that to an artist, it shouldn't really be the focus that you want to be paid for every single occasion you listen to his music (after all, physical &amp; digital sales are not time or play-limited).  The artist does actually care if you listen to his music 10 times or 1000 times though, because they want to know that their music is appreciated. They care specifically, not for the number of plays, but for the appreciation and support that they personally gather.</p>
+
+					<h2>Wait, wasn't there already something about this...?</h2>
+					<p>Yep. Credit where it's due, I was informed on this subject by a few places - but initially it was this blog post by <a href="https://twitter.com/cuepoint">@cuepoint</a>, I would suggest that you go and read it.  If you have any energy left, come back.</p>	
+
+					<blockquote>
+						<p><a href="https://medium.com/cuepoint/how-to-make-streaming-royalties-fair-er-8b38cd862f66" target="_blank">How to make streaming royalties fair(er)</a></p>
+						<footer>
+							<a href="https://twitter.com/cuepoint" target="_blank">@cuepoint</a>
+						</footer>
+					</blockquote>
+
+					<p>&nbsp;</p><!-- lazy space -->
+					
+				</div>
+				<div class="col-sm-3" style="max-height: 400px">
+					<!-- adspace. took a while this, if it gets traffic, that'd be awesome -->
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Stephen 2 -->
+					<ins class="adsbygoogle"
+					     style="display:inline-block;width:336px;height:280px"
+					     data-ad-client="ca-pub-4441435082163690"
+					     data-ad-slot="2191814814"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="row calctrigger">
+		<div class="col-sm-10 col-sm-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>Righto, lets get some listening stats.</h3>
+				</div>
+				<div class="panel-body">
+					<p>We'll need a last.fm user account to get some stats to work with.  If you don't have one, use mine, which is prefilled. Refresh the page to rerun this for another account #lazydev.</p>
+					<form class="form-inline" id="calculate">
+						
+						<label for="lastfmuser" class="control-label">last.fm Username</label>
+						<input type="text" class="form-control" id="lastfmuser" placeholder="last.fm username" value="sweetl">
+						<button type="submit" class="btn btn-primary">Calculate!</button>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row calculated">
+		<div class="col-sm-10 col-sm-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>Weekly Top Artists from last.fm</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<canvas id="mychart" width="360" height="250" class="img-responsive"></canvas>
+						</div>
+						<div class="col-sm-7">
+							<p>These are the artists i (or you) listened to most. The number is a percentage of my listens. I can't get a <i>monthly</i> top artists list from spotify, or i'd have it here.</p>
+							<p>Lets first take a note of the biggest segment, as it'll be the easiest to track. Thus informed, lets go and figure out how much of the money we'll pay for streaming goes to that artist..</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>Weekly Top Artists from Spotify (Derived from top 100 tracks)</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<canvas id="spchart" width="360" height="250" class="img-responsive"></canvas>
+						</div>
+						<div class="col-sm-7">
+							<p>I start with the weekly top tracks. I compile by artist, to figure out who got the most plays.   Again, a monthly list is not available. We'll use a week snapshot, and pretend that peoples listening behaviour won't change this month much.</p>
+							<p>I have highlighted <b style="color:rgb(240,35,75)">in wishy-washy red</b> the artists in the top 100 that are in my top artists list, the most i've seen is 3 segments, at time of writing, I had lit no segments - so don't be surprised if this is the case for you, too - theres no error, you just aren't listening to popular music.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>Your &pound;10 per month subscription premium, and how it gets split</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<canvas id="spfeesplit" width="360" height="250" class="img-responsive"></canvas>
+						</div>
+						<div class="col-sm-7">
+							<p><strong>I want to be clear here:</strong> I don't think it's right to focus on what spotify take. They are running a service, and need to be profitable themselves. Them taking mildly less will make so little impact because of how this all works, anyway.</p>
+
+							<p>I also should say, this figure is based on what little information I could <i>find</i> regarding what spotify keep. It could be higher or lower, again, at this stage I don't believe that this particular split is what matters.</p>
+
+							<p>Now that that's clear, lets find out where your <span style="color:rgb(25,95,255)">&pound;7</span> goes then.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>Here's your <span style="color:rgb(25,95,255)">&pound;7</span>, and where it'd go.</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<canvas id="royaltychart" width="960" height="400" class="img-responsive"></canvas>
+						</div>
+						<div class="col-sm-12">
+							<p>Here are the top artists based on the top 100 tracks listened this month on spotify . If spotify only looked at the top 100, this is how much they'd get each out of your <span style="color:rgb(25,95,255)">&pound;7</span>, in pence (100 pence = &pound;1).</p>
+							<p>Not until you really look. I've added bars <b style="color:rgb(240,35,75)">in wishy-washy red</b> too, for the artists who's music you've actually listened to.</p>
+							<p>Unless you really only listen to popular music, and you listen to exactly whatever is most popular at any time, you'll notice that you haven't got many red bars, if any at all.</p>
+							<p>The reality is, your <span style="color:rgb(25,95,255)">&pound;7</span> goes into a pot with everyone elses <span style="color:rgb(25,95,255)">&pound;7</span> and it gets split among total listens.</p>
+							<p>You'll probably decry me at this stage and point out that sampling the top 100 tracks really doesn't get to the sum of the situation, and you'd be right to make that protest. That said, by looking at a smaller sample we're talking about multiples of pence, not pounds. If we sampled ALL listens, the split would be even less, fractions of pence.  I'm actually being generous, by looking at such a small sample.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>How can that be true?</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>I'm sure by now it's sunk in - what you personally listen to doesn't reflect where your money goes.  I would suspect this is true even for those listeners with the most mainstream taste.  Taylor Swift famously wrote an open letter to apple, and her focus was on her fans.  Truth be told, only this would really help her dedicated fan base know that she was getting her money.</p>
+
+							<p>As @cuemusic discussed, splitting royalty money by listens AND person-by-person results in a much more satisfying result.  The top artists would see less of a spike, but smaller artists with dedicated fanbases would see a MASSIVE increase in their royalty payouts.  The top artists would be getting less, but would also be getting a more accurate payout. </p>
+
+							<p>I don't imagine this would go down well at all, but may well result in this big cultural shift at record labels.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>What if we split up the music per-listen, per-subscriber?</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<canvas id="fairer_royaltychart" width="960" height="400" class="img-responsive"></canvas>
+						</div>
+						<div class="col-sm-12">
+							<p>Here are the artists you've listened to, and how much they could have gotten from you - again, in pence (100 pence = &pound;1).</p>
+							<p><span style="color:rgb(25,95,255)">In blue</span> are the artists that happen to appear in the previous chart, so you can compare payment difference.</p>
+							<p>Now, it's possible you'll look at your chart, and still think its poor. Sure, but you will relisten month on month to stuff you really love, and repeat listen stuff that really gets under your skin. Sure, the rates aren't wonderful, but you'll notice that the smaller bars are all getting something, and those who you listen to a lot are getting something far more meaningful.  For all last.fm users I tried this for, i got tens of pence, rather than fractions of pence.</p>
+							<p>We focus on the artist, not the plays.   If you decide to listen to Paul Simon's Graceland 1000 times this  month, then little old paul gets all of your money. </p>						
+						</div>
+					</div>
+				</div>
+			</div>
+
+				
+			<h2>Afterthoughts</h2>
+			<p>I do not believe Spotify to be in the wrong here.  I believe it's taken a hard slog to get them where they are now, and I believe the time is coming fast when they will be able to call more shots on how they pay royalties - and I'd like to see them adopt a system like this.</p>
+
+			<p>I also don't think we should get bogged down into how much money ends up in the artists pocket, and how much goes to the label. Those particular figures will always be subject to their record deal.  Record companies need a massive reform too, but if we achieve a fairer royalties system like this - then the likelihood is, many more of our favourite artists would be able to make real revenue from streaming. It may not be <i>lots</i>, but it would be an improvement.  Suddenly, indie artists with small but dedicated fan bases could find themselves with a regular, albeit small income.</p>
+
+			<p>I am a spotify premium user, and love it.  The service is great, flexible, and extensive. One might say that the best thing to do if I had a problem would be for me to stop using the service.  I disagree.  I like the service.  I like it a lot, I discover a lot of new music because of it.  I don't need a new service,  and I'm sure spotify would agree.  I would just like people to know exactly how royalties are paid, to make an informed decision on how they believe they *should* work.</p>		
+
+			<p>It's possible that i've missed a great deal of information behind why it can't work any different, if that is the case, please feel free to blog reasons why.</p>
+
+			<p>I'm also presuming that Spotify retain 30% of all fees collected.  I don't know this for sure, it could be any number.  In fact, I don't have an issue with it even if it was 50%, it's their service I'm paying for after all.</p>
+
+			<p>Thanks for your attention, all.  <a href="http://twitter.com/stevesweets">@stevesweets</a></p>
+
+			<h2>Thanks</h2>
+			<p><a href="https://twitter.com/cuepoint">@cuepoint</a> for triggering this idea, Bootstrap, jQuery, <a href="http://www.chartjs.org/" target="_blank">Chart.js</a>, Spotify API, Last.fm API, Github for the host, <a href="http://twitter.com/jongomm" target="_blank">@jongomm</a>, <a href="http://twitter.com/scrimshire" target="_blank">@scrimshire</a>, <a href="http://twitter.com/rogerhughes" target="_blank">@rogerhughes</a> and <a href="http://twitter.com/macknick" target="_blank">@macknick</a> for their input, <a href="http://twitter.com" target="_blank">Twitter</a> for the platform.</p>
+
+		</div>
+	</div>
+
+</div>
+
+<script src="assets/js/main.js"></script>
+<script>
+$(document).ready(function(){
+	// goForthAndCalculate('sweetl');
+
+	$("form#calculate").submit(function(e){
+		e.preventDefault();
+
+		var lastfmuser = $("#lastfmuser").val();
+		if (lastfmuser != ''){
+			goForthAndCalculate(lastfmuser);
+			$("div.row.calculated")
+		}
+	});
+});
+</script>
+</body>
+</html>
